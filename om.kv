@@ -9,17 +9,34 @@
     pos_hint:{'center_x': 0.5, 'center_y': 0.5}
     opacity: 0.8
     auto_dismiss: True
-    GridLayout:
-        cols:2
-        Label: 
-            text: "Non-Linear Solver"
-        Label:
-            text: "Non-Linear Solver"
-        Button:
-            id: Sim_But
-            text: "SIMULATE"
-        Button:
-            text: "    "            
+    BoxLayout:
+        TabbedPanel:
+            size_hint: 0.7,1
+            pos_hint: {'top':1}
+            do_default_tab: False
+            tab_width: self.parent.width/4
+            tab_height: 30
+            TabbedPanelItem:
+                text: 'General'
+                BoxLayout:
+                    orientation: 'vertical'
+                    GridLayout:
+                        cols:2
+                        Label: 
+                            text: "Non-Linear Solver"
+                        Label:
+                            text: "Non-Linear Solver"
+                        Button:
+                            id: Sim_But
+                            text: "SIMULATE"
+                        Button:
+                            text: "    " 
+            TabbedPanelItem:
+                text: 'Output'
+            TabbedPanelItem:
+                text: 'Simulation Flags'
+            TabbedPanelItem:
+                text: 'Archived Simulations'          
 
 <SPopUp>:
     title: "SIMULATION STATUS"

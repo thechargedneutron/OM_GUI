@@ -25,7 +25,7 @@ from kivy.uix.actionbar import ActionButton
 from kivy.uix.actionbar import ActionPrevious
 from kivy.uix.dropdown import DropDown
 from kivy.uix.progressbar import ProgressBar
-from progressbar import NewProgressBar
+#from progressbar import NewProgressBar
 from kivy.lang import Builder
 
 
