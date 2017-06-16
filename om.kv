@@ -5,147 +5,322 @@
 <SSPopUp>:
     id:popup
     title: "SIMULATION SETTINGS"
-    size_hint:(0.7,0.5)
+    size_hint:(0.5,0.7)
     pos_hint:{'center_x': 0.5, 'center_y': 0.5}
     opacity: 0.8
     auto_dismiss: True
-    BoxLayout:
-        TabbedPanel:
-            size_hint: 0.7,1
-            pos_hint: {'top':1}
-            do_default_tab: False
-            tab_width: self.parent.width/4
-            tab_height: 30
-            TabbedPanelItem:
-                text: 'General'
-                BoxLayout:
-                    orientation: 'vertical'
-                    GridLayout:
-                        cols:2
-                        Label: 
-                            text: "Non-Linear Solver"
-                        Label:
-                            text: "Non-Linear Solver"
-                        Button:
-                            id: Sim_But
-                            text: "SIMULATE"
-                        Button:
-                            text: "    " 
-            TabbedPanelItem:
-                text: 'Output'
-                BoxLayout:
-                    orientation: 'vertical'
-                    GridLayout:
-                        cols:2
-                        Label:
-                            text: "Output Format"
-                        TextInput:
-                            id:output_format
-                            size_hint_y:None
-                            height:self.parent.height/4
-                            valign:'top'
-                            font_size:12
-                            multiline:False
-                        Label:
-                            text: "File Name Prefix (Optional)"
-                        TextInput:
-                            id:file_name_prefix
-                            size_hint_y:None
-                            height:self.parent.height/4
-                            valign:'top'
-                            font_size:12
-                            multiline:False
-                        Label:
-                            text: "Result File (Optional)"
-                        TextInput:
-                            id:result_file
-                            size_hint_y:None
-                            height:self.parent.height/4
-                            valign:'top'
-                            font_size:12
-                            multiline:False
-                        Label:
-                            text: "Variable Filter (Optional)"
-                        TextInput:
-                            id:variable_filter
-                            size_hint_y:None
-                            height:self.parent.height/4
-                            valign:'top'
-                            font_size:12
-                            multiline:False
-            TabbedPanelItem:
-                text: 'Simulation Flags'
-                ScrollView:
-                    size_hint: (0.7,0.5)
+    GridLayout:
+        cols:1
+        BoxLayout:
+            TabbedPanel:
+                size_hint: 0.7,1
+                pos_hint: {'top':1}
+                do_default_tab: False
+                tab_width: self.parent.width/4
+                tab_height: 30
+                TabbedPanelItem:
+                    text: 'General'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        GridLayout:
+                            cols:2
+                            Label:
+                                text: "Simulation Interval"
+                            Label:
+                                text: " "
+                            Label:
+                                text: "Start Time: "
+                            TextInput:
+                                id:start_time
+                                size_hint_y:None
+                                height:self.parent.height/4
+                                valign:'top'
+                                font_size:12
+                                multiline:False
+                            Label:
+                                text: "Stop Time: "
+                            TextInput:
+                                id:stop_time
+                                size_hint_y:None
+                                height:self.parent.height/4
+                                valign:'top'
+                                font_size:12
+                                multiline:False
+                            Spinner:
+                                id: interval_type
+                                text:"Select"
+                                values: ("Number of Intervals","Interval")
+                                size_hint_y: None
+                                height: self.parent.height/4
+                            TextInput:
+                                id:interval
+                                size_hint_y:None
+                                height:self.parent.height/4
+                                valign:'top'
+                                font_size:12
+                                multiline:False
+                            Label:
+                                text: "Integration"
+                            Label:
+                                text: " "
+                            Label:
+                                text: "Method"
+                            Spinner:
+                                id: method
+                                text:"Select"
+                                values: ("euler","heun","rungekutte","impeuler","trapezoid","irksco","dassl","ida","rungekuttaSsc","symSolver","symSolverSsc","qss","optimazation")
+                                size_hint_y: None
+                                height: self.parent.height/4
+                            Label:
+                                text: "Tolerance"
+                            TextInput:
+                                id:tolerance
+                                size_hint_y:None
+                                height:self.parent.height/4
+                                valign:'top'
+                                font_size:12
+                                multiline:False
+                            Label:
+                                text: "Jacobian"
+                            Spinner:
+                                id: output_format
+                                text:"Select"
+                                values: (" ","coloredNumerical","internalNumerical","coloredSymbolical","numerical","symbolical","kluSparse")
+                                size_hint_y: None
+                                height: self.parent.height/6
+                            Label:
+                                text: "DASSL/IDA Options"
+                            Label:
+                                text: " "
+                            CheckBox:
+                                id: root_finding
+                                active: True
+                            Label:
+                                text: "Root Finding"
+                            CheckBox:
+                                id: restart_after_event
+                            Label:
+                                text: "Restart after Event"
+                            Label:
+                                text: "Initial Step Size"
+                            TextInput:
+                                id: initial_step_size
+                                size_hint_y:None
+                                height:self.parent.height/4
+                                valign:'top'
+                                font_size:12
+                                multiline:False
+                            Label:
+                                text: "Maximum Step Size"
+                            TextInput:
+                                id: maximum_step_size
+                                size_hint_y:None
+                                height:self.parent.height/4
+                                valign:'top'
+                                font_size:12
+                                multiline:False
+                            Label:
+                                text: "Maximum Integration Order"
+                            TextInput:
+                                id: maximum_integration_order
+                                size_hint_y:None
+                                height:self.parent.height/4
+                                valign:'top'
+                                font_size:12
+                                multiline:False
+                            Label:
+                                text: "Compiler Flags (Optional)"
+                            TextInput:
+                                id: compiler_flags
+                                size_hint_y:None
+                                height:self.parent.height/4
+                                valign:'top'
+                                font_size:12
+                                multiline:False
+                            Label:
+                                text: "No of Processors "
+                            TextInput:
+                                id: no_of_processors
+                                size_hint_y:None
+                                height:self.parent.height/4
+                                valign:'top'
+                                font_size:12
+                                multiline:False
+                            CheckBox:
+                                id: build_only
+                            Label:
+                                text: "Build Only"
+                            CheckBox:
+                                id: launch_transformatonal_debugger
+                            Label:
+                                text: "Launch Transformational Debugger"
+                            CheckBox:
+                                id: launch_algorithmic_debugger
+                            Label:
+                                text: "Launch Algorithmic Debugger"
+                            CheckBox:
+                                id: launch_animation
+                            Label:
+                                text: "Launch Animation"
+                TabbedPanelItem:
+                    text: 'Output'
                     BoxLayout:
                         orientation: 'vertical'
                         GridLayout:
                             cols:2
                             Label:
                                 text: "Output Format"
+                            Spinner:
+                                id: output_format
+                                text:"Select"
+                                values: ("mat","csv","plt")
+                                size_hint_y: None
+                                height: self.parent.height/6
+                            Label:
+                                text: "File Name Prefix (Optional)"
                             TextInput:
-                                id:output_format
+                                id:file_name_prefix
                                 size_hint_y:None
                                 height:self.parent.height/6
                                 valign:'top'
                                 font_size:12
                                 multiline:False
                             Label:
-                                text: "Output Format"
+                                text: "Result File (Optional)"
                             TextInput:
-                                id:output_format
+                                id:result_file
                                 size_hint_y:None
                                 height:self.parent.height/6
                                 valign:'top'
                                 font_size:12
                                 multiline:False
                             Label:
-                                text: "Output Format"
+                                text: "Variable Filter (Optional)"
                             TextInput:
-                                id:output_format
+                                id:variable_filter
                                 size_hint_y:None
                                 height:self.parent.height/6
                                 valign:'top'
                                 font_size:12
                                 multiline:False
+                            CheckBox:
+                                id: protected_variables
+                                active: False
                             Label:
-                                text: "Output Format"
-                            TextInput:
-                                id:output_format
-                                size_hint_y:None
-                                height:self.parent.height/6
-                                valign:'top'
-                                font_size:12
-                                multiline:False
+                                text: "Protected Variables"
+                            CheckBox:
+                                id: equidistant_time_grid
+                                active: True
                             Label:
-                                text: "Output Format"
-                            TextInput:
-                                id:output_format
-                                size_hint_y:None
-                                height:self.parent.height/6
-                                valign:'top'
-                                font_size:12
-                                multiline:False
+                                text: "Equidistant Time Grid"
+                            CheckBox:
+                                id: store_variables_at_events
+                                active: True
                             Label:
-                                text: "Output Format"
-                            TextInput:
-                                id:output_format
-                                size_hint_y:None
-                                height:self.parent.height/6
-                                valign:'top'
-                                font_size:12
-                                multiline:False
+                                text: "Store Variables at Events"
+                            CheckBox:
+                                id:show_generated_files
                             Label:
-                                text: "Output Format"
-                            TextInput:
-                                id:output_format
-                                size_hint_y:None
-                                height:self.parent.height/6
-                                valign:'top'
-                                font_size:12
-                                multiline:False
-            TabbedPanelItem:
-                text: 'Archived Simulations'          
+                                text: "Show Generated Files"
+
+                TabbedPanelItem:
+                    text: 'Simulation Flags'
+                    ScrollView:
+                        BoxLayout:
+                            orientation: 'vertical'
+                            GridLayout:
+                                cols:2
+                                Label:
+                                    text: "Output Format 1"
+                                TextInput:
+                                    id:output_format
+                                    size_hint_y:None
+                                    height:self.parent.height/6
+                                    valign:'top'
+                                    font_size:12
+                                    multiline:False
+                                Label:
+                                    text: "Output Format 2"
+                                TextInput:
+                                    id:output_format
+                                    size_hint_y:None
+                                    height:self.parent.height/6
+                                    valign:'top'
+                                    font_size:12
+                                    multiline:False
+                                Label:
+                                    text: "Output Format 3"
+                                TextInput:
+                                    id:output_format
+                                    size_hint_y:None
+                                    height:self.parent.height/6
+                                    valign:'top'
+                                    font_size:12
+                                    multiline:False
+                                Label:
+                                    text: "Output Format 4"
+                                TextInput:
+                                    id:output_format
+                                    size_hint_y:None
+                                    height:self.parent.height/6
+                                    valign:'top'
+                                    font_size:12
+                                    multiline:False
+                                Label:
+                                    text: "Output Format 5"
+                                TextInput:
+                                    id:output_format
+                                    size_hint_y:None
+                                    height:self.parent.height/6
+                                    valign:'top'
+                                    font_size:12
+                                    multiline:False
+                                Label:
+                                    text: "Output Format 6"
+                                TextInput:
+                                    id:output_format
+                                    size_hint_y:None
+                                    height:self.parent.height/6
+                                    valign:'top'
+                                    font_size:12
+                                    multiline:False
+                                Label:
+                                    text: "Output Format"
+                                TextInput:
+                                    id:output_format
+                                    size_hint_y:None
+                                    height:self.parent.height/6
+                                    valign:'top'
+                                    font_size:12
+                                    multiline:False
+                                Label:
+                                    text: "Output Format x"
+                                TextInput:
+                                    id:output_format
+                                    size_hint_y:None
+                                    height:self.parent.height/6
+                                    valign:'top'
+                                    font_size:12
+                                    multiline:False
+                TabbedPanelItem:
+                    text: 'Archived Simulations'
+        GridLayout:
+            cols:2
+            CheckBox:
+                id: save_expt_anntn
+                active: True
+            Label:
+                text: "Save experiment annotation inside model"
+            CheckBox:
+                id: save_om_sim_flag
+            Label:
+                text: "Save OpenModelica Simulationflag"
+            Button:
+                id: Sim_But
+                text: "SIMULATE"
+                height:self.parent.height/5
+            Label:
+                text: "Hello"
 
 <SPopUp>:
     title: "SIMULATION STATUS"

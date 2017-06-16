@@ -27,6 +27,7 @@ from kivy.uix.dropdown import DropDown
 from kivy.uix.progressbar import ProgressBar
 #from progressbar import NewProgressBar
 from kivy.lang import Builder
+from kivy.base import runTouchApp
 
 
 import random
@@ -163,6 +164,10 @@ class OmWidget(GridLayout):
         SimStatus = SPopUp()
         SimStatus.bind(on_open=self.SimProgress)
         SimStatus.open()
+
+    def select(self, *args):
+        try: self.label.text = args[1][0]
+        except: pass
         
 
     def SimProgress(self,instance):
